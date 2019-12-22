@@ -1,6 +1,7 @@
 import svelte from "rollup-plugin-svelte";
 import resolve from "rollup-plugin-node-resolve";
 import pkg from "./package.json";
+
 import { terser } from "rollup-plugin-terser";
 
 const name = pkg.name
@@ -11,8 +12,8 @@ const name = pkg.name
 export default {
   input: "src/index.svelte",
   output: [
-    { file: pkg.module, format: "es" },
-    { file: pkg.main, format: "umd", name }
+    { file: `dist/${pkg.module}`, format: "es" },
+    { file: `dist/${pkg.main}`, format: "umd", name }
   ],
   plugins: [terser(), svelte({ customElement: true }), resolve()]
 };
